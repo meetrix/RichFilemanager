@@ -102,6 +102,50 @@ $config = [];
 //        ],
 //    ],
 //];
+$config_s3 = [
+    'logger' => [
+        'enabled' => true,
+        'file' => '/var/log/filemanager.log',
+    ],
+];
+
+$config = [
+    'security' => [
+        'readOnly' => false,
+        'extensions' => [
+            'policy' => 'ALLOW_LIST',
+            'restrictions' => [
+                'jpg',
+                'jpe',
+                'jpeg',
+                'gif',
+                'png',
+                'html',
+            ],
+        ],
+    ],
+];
+$config_s3 = [
+    'images' => [
+        'thumbnail' => [
+            'dir' => 's3_thumbs',
+            'useLocalStorage' => true,
+        ],
+    ],
+    'credentials' => [
+        'region' => '',
+        'bucket' => '',
+        'credentials' => [
+            'key' => '',
+            'secret' =>'',
+        ],
+        'defaultAcl' => \RFM\Repository\S3\StorageHelper::ACL_PUBLIC_READ,
+        'debug' => false,
+    ],
+];
+
+
+$config_s3['encryption'] = 'AES256';
 
 $app = new \RFM\Application();
 
@@ -116,6 +160,12 @@ $local = new \RFM\Repository\Local\Storage($config);
 $app->setStorage($local);
 
 // set application API
-$app->api = new RFM\Api\LocalApi();
+//$app->api = new RFM\Api\LocalApi();
 
+// AWS S3 storage instance
+$s3 = new \RFM\Repository\S3\Storage($config_s3);
+$app->setStorage($s3);
+// AWS S3 API
+$app->api = new RFM\Api\AwsS3Api();
 $app->run();
+
