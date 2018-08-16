@@ -128,3 +128,12 @@ MIT LICENSE
 
 Released under the [MIT license](http://opensource.org/licenses/MIT).
 
+##jwt structure
+
+`{
+   "sub": "1234567890",
+   "name": "John Doe",
+   "iat": 1516239022,
+   "path":"/Test/",
+   "role":"teacher"
+ }`
