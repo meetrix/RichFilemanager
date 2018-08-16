@@ -125,4 +125,6 @@ Check the details in [API](https://github.com/servocoder/RichFilemanager/wiki/AP
 MIT LICENSE
 -----------
 
+
 Released under the [MIT license](http://opensource.org/licenses/MIT).
+

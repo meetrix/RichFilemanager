@@ -26,6 +26,7 @@
   },
   "require": {
     "servocoder/richfilemanager-php": "^1.2",
-    "aws/aws-sdk-php": "^3.64"
+    "aws/aws-sdk-php": "^3.64",
+    "firebase/php-jwt": "^5.0"
   }
 }
